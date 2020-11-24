@@ -1,0 +1,26 @@
+diff --git a/Lib/shutil.py b/Lib/shutil.py
+index dd12448..2fc7432 100644
+--- a/Lib/shutil.py
++++ b/Lib/shutil.py
+@@ -164,7 +164,7 @@ if hasattr(os, 'listxattr'):
+                 value = os.getxattr(src, name, follow_symlinks=follow_symlinks)
+                 os.setxattr(dst, name, value, follow_symlinks=follow_symlinks)
+             except OSError as e:
+-                if e.errno not in (errno.EPERM, errno.ENOTSUP, errno.ENODATA):
++                if e.errno not in (errno.EACCES, errno.EPERM, errno.ENOTSUP, errno.ENODATA):
+                     raise
+ else:
+     def _copyxattr(*args, **kwargs):
+diff --git a/Lib/subprocess.py b/Lib/subprocess.py
+index 8c3fa1b..074098b 100644
+--- a/Lib/subprocess.py
++++ b/Lib/subprocess.py
+@@ -1240,7 +1240,7 @@ class Popen(object):
+                 args = list(args)
+ 
+             if shell:
+-                args = ["/bin/sh", "-c"] + args
++                args = ["/data/data/org.galexander.sshd/r/gentoo/bin/sh", "-c"] + args
+                 if executable:
+                     args[0] = executable
+ 

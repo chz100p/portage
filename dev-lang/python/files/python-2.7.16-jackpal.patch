@@ -1,0 +1,13 @@
+diff --git a/Lib/subprocess.py b/Lib/subprocess.py
+index 1f2da0f..bc513dc 100644
+--- a/Lib/subprocess.py
++++ b/Lib/subprocess.py
+@@ -911,7 +911,7 @@ class Popen(object):
+                 args = list(args)
+ 
+             if shell:
+-                args = ["/bin/sh", "-c"] + args
++                args = ["/data/data/org.galexander.sshd/r/gentoo/bin/sh", "-c"] + args
+                 if executable:
+                     args[0] = executable
+ 
