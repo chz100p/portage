@@ -1,0 +1,59 @@
+diff --git a/../../../termux-exec-9999/work/termux-exec-9999/Makefile b/./Makefile
+index 40c1532..7a71a78 100644
+--- a/../../../termux-exec-9999/work/termux-exec-9999/Makefile
++++ b/./Makefile
+@@ -1,10 +1,10 @@
+ TERMUX_PREFIX := $(EPREFIX)/usr
+ TERMUX_BASE_DIR := $(EPREFIX)
+-CFLAGS += -D_GNU_SOURCE -Wall -Wextra -Werror -Oz
++CFLAGS += -D_GNU_SOURCE -Wall -Wextra -Werror
+ PREFIX := $(DESTDIR)$(TERMUX_PREFIX)
+ 
+ libtermux-exec.so: termux-exec.c
+-	$(CC) $(CFLAGS) $(LDFLAGS) termux-exec.c -DTERMUX_PREFIX=\"$(TERMUX_PREFIX)\" -DTERMUX_BASE_DIR=\"$(TERMUX_BASE_DIR)\" -shared -ldl -fPIC -o libtermux-exec.so
++	$(CC) -I. $(CFLAGS) $(LDFLAGS) termux-exec.c -DTERMUX_PREFIX=\"$(TERMUX_PREFIX)\" -DTERMUX_BASE_DIR=\"$(TERMUX_BASE_DIR)\" -shared -ldl -fPIC -o libtermux-exec.so
+ 
+ install: libtermux-exec.so
+ 	install -D libtermux-exec.so $(PREFIX)/lib/libtermux-exec.so
+diff --git a/../../../termux-exec-9999/work/termux-exec-9999/run-tests.sh b/./run-tests.sh
+index 0c831d7..f8da4ba 100755
+--- a/../../../termux-exec-9999/work/termux-exec-9999/run-tests.sh
++++ b/./run-tests.sh
+@@ -1,7 +1,7 @@
+-#!/data/data/com.termux/files/usr/bin/bash
++#!/data/data/jackpal.androidterm/r/gentoo/bin/bash
+ 
+ set -u
+-
++r=0
+ for f in tests/*.sh; do
+ 	printf "Running $f..."
+ 
+@@ -9,12 +9,13 @@ for f in tests/*.sh; do
+ 	ACTUAL_FILE=$f-actual
+ 
+ 	rm -f $ACTUAL_FILE
+-	$f myarg1 myarg2 &> $ACTUAL_FILE
++	$f myarg1 myarg2 &> $ACTUAL_FILE ; r0=$?
+ 
+ 	if cmp --silent $ACTUAL_FILE $EXPECTED_FILE; then
+ 		printf " OK\n"
+ 	else
+-		printf " FAILED - compare expected $EXPECTED_FILE with ${ACTUAL_FILE}\n"
++		printf " FAILED - compare expected $EXPECTED_FILE with ${ACTUAL_FILE}\n" ; r=$((1>r0?1:r0))
+ 	fi
+ done
+ 
++exit $r
+diff --git a/../../../termux-exec-9999/work/termux-exec-9999/termux-exec.c b/./termux-exec.c
+index 90c229a..0deed40 100644
+--- a/../../../termux-exec-9999/work/termux-exec-9999/termux-exec.c
++++ b/./termux-exec.c
+@@ -175,3 +175,7 @@ final:
+ 	free(new_argv);
+ 	return ret;
+ }
++
++// #include "execvpe.c"
++// #include "execvp.c"
++
