@@ -34,6 +34,6 @@ index 90c229a..214ab3d 100644
  	return ret;
  }
 +
-+//#include "execvpe.c"
-+//#include "execvp.c"
++#include "execvpe.c"
++#include "execvp.c"
 +
