@@ -6,7 +6,7 @@ index 66a2008..40c1532 100644
 -TERMUX_PREFIX := /data/data/com.termux/files/usr
 -TERMUX_BASE_DIR := /data/data/com.termux/files
 -CFLAGS += -Wall -Wextra -Werror -Oz
-+TERMUX_PREFIX := $(EPREFIX)/usr
++TERMUX_PREFIX := $(EPREFIX)
 +TERMUX_BASE_DIR := $(EPREFIX)
 +CFLAGS += -D_GNU_SOURCE -Wall -Wextra -Werror
 +PREFIX := $(DESTDIR)$(TERMUX_PREFIX)

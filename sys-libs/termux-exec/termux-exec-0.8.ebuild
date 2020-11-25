@@ -20,18 +20,23 @@ RDEPEND="${DEPEND}"
 BDEPEND=""
 
 src_prepare() {
+	cp "${FILESDIR}/termux-exec-0.8/autogen.sh" "${S}/."
+	cp "${FILESDIR}/termux-exec-0.8/config.sh.in" "${S}/."
+	cp "${FILESDIR}/termux-exec-0.8/configure.ac" "${S}/."
+	cp "${FILESDIR}/termux-exec-0.8/Makefile.am" "${S}/."
 	local PATCHES=(
-		"${FILESDIR}/termux-exec-0.8-gentoo-prefix.patch"
+		"${FILESDIR}/termux-exec-0.8-autotools.patch"
 	)
 	default
+	mv "${S}/Makefile" "${S}/Makefile.orig"
 }
 
-#src_configure() {
-#	./autogen.sh
-#	econf --disable-static
-#}
+src_configure() {
+	sh ./autogen.sh
+	econf --disable-static
+}
 
-#src_install() {
-#	default
-#	find "${D}" -name '*.la' -exec rm -f '{}' +
-#}
+src_install() {
+	default
+	find "${D}" -name '*.la' -exec rm -f '{}' +
+}
