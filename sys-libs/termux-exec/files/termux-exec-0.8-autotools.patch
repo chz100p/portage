@@ -1,5 +1,5 @@
 diff --git a/termux-exec.c b/termux-exec.c
-index 90c229a..214ab3d 100644
+index 90c229a..8cae817 100644
 --- a/termux-exec.c
 +++ b/termux-exec.c
 @@ -1,3 +1,5 @@
@@ -29,11 +29,12 @@ index 90c229a..214ab3d 100644
  	return filename;
  }
  
-@@ -175,3 +184,7 @@ final:
+@@ -175,3 +184,8 @@ final:
  	free(new_argv);
  	return ret;
  }
 +
 +#include "execvpe.c"
 +#include "execvp.c"
++#include "execv.c"
 +
