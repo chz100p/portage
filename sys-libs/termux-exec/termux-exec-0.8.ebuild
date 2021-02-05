@@ -24,6 +24,7 @@ src_prepare() {
 	cp "${FILESDIR}/termux-exec-0.8/config.sh.in" "${S}/."
 	cp "${FILESDIR}/termux-exec-0.8/configure.ac" "${S}/."
 	cp "${FILESDIR}/termux-exec-0.8/Makefile.am" "${S}/."
+	cp "${FILESDIR}/termux-exec-0.8/execv.c" "${S}/."
 	cp "${FILESDIR}/termux-exec-0.8/execvp.c" "${S}/."
 	cp "${FILESDIR}/termux-exec-0.8/execvpe.c" "${S}/."
 	cp "${FILESDIR}/termux-exec-0.8/confstr.h" "${S}/."
