@@ -32,6 +32,7 @@ src_prepare() {
 	cp "${FILESDIR}/termux-exec-0.8/symbol-hacks.h" "${S}/."
 	local PATCHES=(
 		"${FILESDIR}/termux-exec-0.8-autotools.patch"
+		"${FILESDIR}/termux-exec-0.8-posix_spawn.patch"
 	)
 	default
 	mv "${S}/Makefile" "${S}/Makefile.orig"
